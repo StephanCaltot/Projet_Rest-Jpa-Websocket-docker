@@ -1,0 +1,14 @@
+serverRest:
+    image: maven:latest
+    volumes:
+     - C:\Users\•Screetts\IdeaProjects\BrunoProjet/:/usr/src/myapp
+    ports:
+     - "9998:9998"
+    command: bash -c "cd /usr/src/myapp; mvn exec:java -Dexec.mainClass=\"fr.univtln.scaltot904.TP.tpJpa.Test.CServer\""
+serverWebSocket:
+    image: maven:latest
+    volumes:
+     - C:\Users\•Screetts\IdeaProjects\ServerWebSocket/:/usr/src/myapp2
+    ports:
+     - "8025:8025"
+    command: bash -c "cd /usr/src/myapp2; mvn exec:java -Dexec.mainClass=\"fr.univtln.scaltot904.Server\""

@@ -1,0 +1,30 @@
+serverRest:
+    image: maven:latest
+    volumes:
+     - C:\Users\•Screetts\IdeaProjects\BrunoProjet/:/usr/src/myapp
+    ports:
+     - "9998:9998"
+    command: bash -c "cd /usr/src/myapp; mvn exec:java -Dexec.mainClass=\"fr.univtln.scaltot904.TP.tpJpa.Test.CServer\""
+    links:
+     - db:db
+db:
+    image: postgres:latest
+    volumes:
+     - C:\Users\•Screetts\dockerpostgres\postgresql_data:/var/lib/postgresql/data/
+    ports:
+     - "5432:5432"
+     - "8085:80"
+    environment:
+     - POSTGRES_PASSWORD=3eb48u
+serverWebSocket:
+    image: maven:latest
+    volumes:
+     - C:\Users\•Screetts\IdeaProjects\ServerWebSocket/:/usr/src/myapp2
+    ports:
+     - "8025:8025"
+    command: bash -c "cd /usr/src/myapp2; mvn exec:java -Dexec.mainClass=\"fr.univtln.scaltot904.Server\""
+clientWebSocket:
+    image: maven:latest
+    volumes:
+     - C:\Users\•Screetts\IdeaProjects\ClientWebSocket/:/usr/src/myapp3
+    command: bash -c "cd /usr/src/myapp3; mvn exec:java -Dexec.mainClass=\"fr.univtln.scaltot904.ClientWebSocket.App\""
